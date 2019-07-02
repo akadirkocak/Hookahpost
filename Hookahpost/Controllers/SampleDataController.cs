@@ -26,11 +26,20 @@ namespace Hookahpost.Controllers
             });
         }
 
+        [HttpGet("[action]")]
+        public JsonResult WeatherForecasts2()
+        {
+            JsonResult categoryJson = new JsonResult("deneme");
+            return categoryJson;
+        }
+
+
         public class WeatherForecast
         {
             public string DateFormatted { get; set; }
             public int TemperatureC { get; set; }
             public string Summary { get; set; }
+            public string Demo { get; set; }
 
             public int TemperatureF
             {
