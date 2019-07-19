@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {PostData} from './services/PostService';
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -27,6 +28,7 @@ export class RegisterForm extends Component {
 
   constructor(props) {
     super(props);
+    this.register = this.register.bind(this);
 
     this.state = {
       firstName: null,
@@ -43,16 +45,16 @@ export class RegisterForm extends Component {
   }
 
   register() {
-    array = {};
-    array.push(this.state.email);
-    array.push(this.state.password);
-    PostData('post', array).then((result) => {
+    var object = {"username": this.state.email,
+                  "password": this.state.password};
+
+    PostData('post', object).then((result) => {
       let responseJson = result;
       if (responseJson.userData) {
         sessionStorage.setItem('userData', JSON.stringify(responseJson));
       }
     });
-
+    console.log("hi")
 
   }
 
@@ -173,7 +175,7 @@ export class RegisterForm extends Component {
               )}
             </div>
             <div className="createAccount">
-              <button type="submit">Create Account</button>
+              <button onClick={this.register} type="submit">Create Account</button>
               <small>Already Have an Account?</small>
             </div>
           </form>
