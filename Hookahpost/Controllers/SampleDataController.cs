@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,6 +48,17 @@ namespace Hookahpost.Controllers
                 {
                     return 32 + (int)(TemperatureC / 0.5556);
                 }
+            }
+        }
+
+        [HttpPost("[action]")]
+        public void Post([FromBody] dynamic value)
+        {
+            List<string> list = new List<string>();
+            foreach(string a in value)
+            {
+                
+                list.Add(a);
             }
         }
     }
