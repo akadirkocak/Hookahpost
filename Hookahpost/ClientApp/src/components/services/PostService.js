@@ -1,5 +1,5 @@
 export function PostData(type, userData) {
-    let BaseURL = 'http://localhost:5000/api/sampledata/';
+    let BaseURL = 'https://www.hookahpost.me/api/sampledata/';
 
     return new Promise((resolve, reject) => {
         console.log(JSON.stringify(userData))
