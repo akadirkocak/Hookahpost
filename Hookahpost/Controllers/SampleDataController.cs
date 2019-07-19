@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -61,6 +62,17 @@ namespace Hookahpost.Controllers
             {
                 
                 list.Add(a);
+            }
+            string uName = list[0], uPassword = list[1];
+            string connectionString = @"Data Source=77.245.159.10\MSSQLSERVER2014;Initial Catalog=hookahpostDb; User Id=hookahpostUser;Password=s.a.5050;";
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter("INSERT INTO Users (FirstName, Password,Active) values ('asd','sdsa',1)", sqlCon);
+                string query = "INSERT INTO Users (FirstName, Password,Active) values ('"+uName+"','"+uPassword+"',1)";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.ExecuteNonQuery();
+                sqlCon.Close();
             }
         }
     }
