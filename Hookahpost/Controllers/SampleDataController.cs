@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,11 +27,22 @@ namespace Hookahpost.Controllers
             });
         }
 
+        [HttpGet("[action]")]
+        public JsonResult WeatherForecasts2()
+        {
+            JsonResult categoryJson = new JsonResult("deneme");
+            return categoryJson;
+        }
+
+        // Hellooopo
+
+
         public class WeatherForecast
         {
             public string DateFormatted { get; set; }
             public int TemperatureC { get; set; }
             public string Summary { get; set; }
+            public string Demo { get; set; }
 
             public int TemperatureF
             {
@@ -38,6 +50,17 @@ namespace Hookahpost.Controllers
                 {
                     return 32 + (int)(TemperatureC / 0.5556);
                 }
+            }
+        }
+
+        [HttpPost("[action]")]
+        public void Post([FromBody] dynamic value)
+        {
+            List<string> list = new List<string>();
+            foreach(string a in value)
+            {
+                
+                list.Add(a);
             }
         }
     }

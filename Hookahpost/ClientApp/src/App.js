@@ -4,6 +4,7 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
+import { RegisterForm } from './components/RegisterForm'
 
 export default class App extends Component {
   static displayName = App.name;
@@ -11,6 +12,7 @@ export default class App extends Component {
   render () {
     return (
       <Layout>
+        <Route path='/register' component={RegisterForm} />
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
